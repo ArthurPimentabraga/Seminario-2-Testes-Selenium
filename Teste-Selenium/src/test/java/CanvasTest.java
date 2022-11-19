@@ -8,11 +8,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.junit.Assert.assertEquals;
 
-public class TestSelenium {
+public class CanvasTest {
 
     WebDriver driver;
 
-    private static final String URL = "https://pucminas.instructure.com/login/canvas";
+    private static final String URL_LOGIN = "https://pucminas.instructure.com/login/canvas";
+    private static final String URL_HOME = "https://pucminas.instructure.com/";
 
     @Before
     public void init() {
@@ -23,12 +24,12 @@ public class TestSelenium {
     @Test
     @DisplayName("Quando não existe usuário ou senha, não deve permitir o login")
     public void test01() throws InterruptedException {
-        driver.get(URL);
+        driver.get(URL_LOGIN);
 
         var currentUrl = driver.getCurrentUrl();
-        assertEquals(URL, currentUrl);
+        assertEquals(URL_LOGIN, currentUrl);
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
 
         WebElement userTextBox = driver.findElement(By.id("pseudonym_session_unique_id"));
         WebElement pwdTextBox = driver.findElement(By.id("pseudonym_session_password"));
@@ -37,20 +38,14 @@ public class TestSelenium {
         userTextBox.sendKeys("1278661");
         pwdTextBox.sendKeys("123456");
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
 
         loginButton.click();
 
         var finalUrl = driver.getCurrentUrl();
-        assertEquals(URL, finalUrl);
+        assertEquals(URL_LOGIN, finalUrl);
 
         driver.quit();
-    }
-
-    @Test
-    @DisplayName("")
-    public void test02() {
-
     }
 
 }
