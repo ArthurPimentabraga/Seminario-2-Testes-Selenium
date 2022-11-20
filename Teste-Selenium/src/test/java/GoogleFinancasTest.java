@@ -31,7 +31,12 @@ public class GoogleFinancasTest {
         WebElement loginButton = driver.findElement(By.xpath("//*[text()='Faça login']"));
         loginButton.click();
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
+
+        var emailTextBox = driver.findElement(By.xpath("//input[@jsname = 'YPqjbf']"));
+        emailTextBox.sendKeys("test@gmail.com");
+
+        Thread.sleep(1000);
 
         var title = driver.getTitle();
         assertEquals("Fazer login nas Contas do Google", title);
@@ -84,6 +89,8 @@ public class GoogleFinancasTest {
 
         var shareButton = driver.findElement(By.xpath("//*[text()='Compartilhar']"));
         shareButton.click();
+
+        Thread.sleep(2000);
 
         driver.findElement(By.xpath("//*[text()='Compartilhar']"));
         driver.findElement(By.xpath("//*[text()='Copiar link']"));
