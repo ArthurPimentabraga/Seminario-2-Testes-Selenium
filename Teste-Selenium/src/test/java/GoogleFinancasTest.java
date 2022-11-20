@@ -72,6 +72,41 @@ public class GoogleFinancasTest {
         driver.quit();
     }
 
+    @Test
+    @DisplayName("Ao solicitar o compartilhamento de uma tendência, deve abrir um popup com a opção de copiar o link")
+    public void test04() throws InterruptedException {
+        goToUrl(URL_HOME);
+
+        var tendenciaButton = driver.findElement(By.xpath("//*[text()='Mais ativos']"));
+        tendenciaButton.click();
+
+        Thread.sleep(2000);
+
+        var shareButton = driver.findElement(By.xpath("//*[text()='Compartilhar']"));
+        shareButton.click();
+
+        driver.findElement(By.xpath("//*[text()='Compartilhar']"));
+        driver.findElement(By.xpath("//*[text()='Copiar link']"));
+
+        driver.quit();
+    }
+
+    @Test
+    @DisplayName("Ao tentar seguir um índice sem estar logado, deve redirecionar para a tela de login")
+    public void test05() throws InterruptedException {
+        goToUrl(URL_HOME);
+
+        var followButton = driver.findElement(By.xpath("//div[@jsname = 'pzCKEc']"));
+        followButton.click();
+
+        Thread.sleep(2000);
+
+        var title = driver.getTitle();
+        assertEquals("Fazer login nas Contas do Google", title);
+
+        driver.quit();
+    }
+
     private String goToUrl(String url) {
         driver.get(url);
         return driver.getCurrentUrl();
