@@ -14,7 +14,7 @@ public class GoogleFinancasTest {
 
     WebDriver driver;
 
-    private static final String URL_HOME = "https://www.google.com/finance/";
+    private static final String URL_HOME = "https://www.google.com/finance/?hl=pt";
 
     @Before
     public void init() {
